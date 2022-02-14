@@ -47,8 +47,10 @@ export default {
       if (input.trim().length > 0) {
         this.$store.dispatch("commenceFilteringOfList", input);
         this.randomDogs = this.$store.getters.returnFilteredDogsList;
+        this.arr = this.randomDogs
       } else {
         this.randomDogs = this.$store.getters.returnRandomDogs;
+        this.arr = this.randomDogs
       }
     },
 
