@@ -2,6 +2,15 @@
   <div class="w-full">
     <nav-bar @search="showMe"></nav-bar>
 
+    <div
+      v-if="notFound"
+      class="w-full flex justify-center items-center h-screen"
+    >
+      <h2 class="text-6xl font-semibold text-center">
+        Ruff! Ruff!! {{ searchInput.toUpperCase() }} is not yet available
+      </h2>
+    </div>
+
     <div v-if="hasLoaded" class="tester p-6 w-full flex flex-wrap">
       <all-dogs
         ref="allDogs"
@@ -32,6 +41,8 @@ export default {
       randomDogs: [],
       hasLoaded: "",
       arr: [],
+      searchInput: "",
+      notFound: false,
       currentWidth: window.innerWidth,
       numberPerRow: this.perRow(this.currentWidth),
       numberOfLoaded: 0,
@@ -44,13 +55,21 @@ export default {
   methods: {
     showMe(input) {
       // alert(input)
+      this.searchInput = input;
       if (input.trim().length > 0) {
         this.$store.dispatch("commenceFilteringOfList", input);
-        this.randomDogs = this.$store.getters.returnFilteredDogsList;
-        this.arr = this.randomDogs
+
+        if (this.$store.getters.returnFilteredDogsList.length > 0) {
+          this.randomDogs = this.$store.getters.returnFilteredDogsList;
+          this.arr = this.randomDogs;
+          this.notFound = false;
+        } else {
+          this.notFound = true;
+        }
       } else {
+        this.notFound = false;
         this.randomDogs = this.$store.getters.returnRandomDogs;
-        this.arr = this.randomDogs
+        this.arr = this.randomDogs;
       }
     },
 
@@ -130,7 +149,7 @@ export default {
         this.$refs.allDogs[this.numberOfLoaded].$refs.myDog.offsetTop;
       this.elemHeight =
         this.$refs.allDogs[this.numberOfLoaded].$refs.myDog.offsetHeight;
-        this.testImage = this.$refs.allDogs[20].$refs.myDog.offsetTop;
+      this.testImage = this.$refs.allDogs[20].$refs.myDog.offsetTop;
     });
   },
 };

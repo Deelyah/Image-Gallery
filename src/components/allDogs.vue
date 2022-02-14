@@ -1,7 +1,7 @@
 <template>
   <div class="list_container mt-14 w-full justify-center items-center" ref="myDog">
     <div class="flex p-4 justify-center items-center">
-      <img v-if="dog" @click="getIndex()" :src="dog" />
+      <img class="hover:cursor-pointer" v-if="dog" @click="getIndex()" :src="dog" />
       <div
         v-if="!dog"
         class="flex list flex-col items-center justify-center w-full"
