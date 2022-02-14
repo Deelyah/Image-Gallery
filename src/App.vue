@@ -11,20 +11,20 @@
         class="w-full flex list_container"
       ></all-dogs>
     </div>
-    <!-- <loader v-else></loader> -->
+    <loader v-else></loader>
   </div>
 </template>
 
 <script>
 import navBar from "./components/nav.vue";
 import allDogs from "./components/allDogs.vue";
-// import loader from "./components/loader.vue";
+import loader from "./components/loader.vue";
 export default {
   name: "App",
   components: {
     navBar,
     allDogs,
-    // loader,
+    loader,
   },
 
   data() {
@@ -58,26 +58,6 @@ export default {
       }
     },
 
-    // checkPosition() {
-    //   var that = this;
-    //   window.addEventListener("scroll", function() {
-    //   that.arr.splice(0, 2, that.randomDogs[0], that.randomDogs[1])
-    //   console.log("I ran")
-    //   })
-    // },
-
-    // lazyLoad() {
-    //   var w = window.innerWidth
-    //   if(w >= 0 && w < 459) {}
-    //   if(w >= 460 && w < 767) {}
-    //   if(w >= 768 && w < 1023) {}
-    //   if(w >= 1024) {}
-    // },
-
-    // loadFourImages() {
-
-    // },
-
     perRow(currentWidth) {
       if (currentWidth >= 0 && currentWidth < 459) {
         return 1;
@@ -102,7 +82,6 @@ export default {
     },
 
     spliceIn(thatt, y, winHeight) {
-      console.log(this.numberPerRow);
       const that = thatt;
       if (y + winHeight > that.elemDistance + that.elemHeight) {
         // if (that.elemDistance > 100) alert(that.elemDistance);
@@ -117,7 +96,6 @@ export default {
         );
         that.numberOfLoaded += that.numberPerRow;
       }
-      console.log(`ref height is: ${y + winHeight}`, `And height of this image is ${this.testImage}`)
     },
 
     lazyScroll() {
