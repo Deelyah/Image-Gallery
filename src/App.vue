@@ -84,8 +84,6 @@ export default {
     spliceIn(thatt, y, winHeight) {
       const that = thatt;
       if (y + winHeight > that.elemDistance + that.elemHeight) {
-        // if (that.elemDistance > 100) alert(that.elemDistance);
-
         that.arr.splice(
           that.numberOfLoaded,
           that.numberPerRow,
@@ -113,8 +111,6 @@ export default {
     this.hasLoaded = this.$store.getters.loadState;
     await this.$store.dispatch("fetchRandomDogs");
     this.hasLoaded = true;
-
-    // this.$store.dispatch("fetchRandomDogsAgain");
     this.randomDogs = this.$store.getters.returnRandomDogs;
     this.createEmptyArray("");
   },
@@ -133,8 +129,6 @@ export default {
       this.elemHeight =
         this.$refs.allDogs[this.numberOfLoaded].$refs.myDog.offsetHeight;
         this.testImage = this.$refs.allDogs[20].$refs.myDog.offsetTop;
-      console.log(this.elemDistance);
-      console.log(this.numberPerRow);
     });
   },
 };
